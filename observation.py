@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# In[5]:
 
 
 """Data models for the astronomy observation ."""
