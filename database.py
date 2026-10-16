@@ -45,8 +45,6 @@ def save_observations_to_db(observations, connection):
     print(f"\n  {len(observations)} observation(s) saved to the database.")
 
 
-# In[ ]:
-
 
 
 
