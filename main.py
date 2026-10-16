@@ -6,7 +6,7 @@ import csv
 import math
 import sqlite3
 
-from Observation import Photometric_Observation, Spectroscopic_Observation
+from observation import Photometric_Observation, Spectroscopic_Observation
 from visualization import show_exposure_chart
 from database import save_observations_to_db
 
