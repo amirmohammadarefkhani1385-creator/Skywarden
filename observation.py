@@ -35,39 +35,36 @@ class Observation:
         return self.exposure_seconds / 60
 
 
-class Spectroscopic_Observation(Observation):
-    """An observation that also records the wavelength.
+class Wavelength_Observation(Observation):
+    """An observation that also stores the wavelength (lambda).
 
     Attributes:
-        wavelength_nm: Observed wavelength in nanometres.
+        lambda_nm: Wavelength in nanometres.
     """
 
-    def __init__(self, target, observer, filter_name, exposure_seconds, wavelength_nm):
+    def init(self, target, observer, filter_name, exposure_seconds, lambda_nm):
         super().__init__(target, observer, filter_name, exposure_seconds)
-        self.wavelength_nm = wavelength_nm
+        self.lambda_nm = lambda_nm
 
     def summary(self):
-        """Return the base summary with the wavelength appended."""
-        return super().summary() + f"\n  Wavelength: {self.wavelength_nm:g} nm"
+        """Return the base text and add a line for lambda."""
+        return super().summary() + f"\n  Lambda: {self.lambda_nm} nm"
 
-class Photometric_Observation(Observation):
-    """An observation that also records the brightness.
+
+class Brightness_Observation(Observation):
+    """An observation that also stores how bright the target is.
 
     Attributes:
-        brightness: Measured brightness of the target.
+        apparent_mag: Apparent magnitude (smaller means brighter, may be negative).
     """
 
-    def __init__(self, target, observer, filter_name, exposure_seconds, brightness):
+    def init(self, target, observer, filter_name, exposure_seconds, apparent_mag):
         super().__init__(target, observer, filter_name, exposure_seconds)
-        self.brightness = brightness
+        self.apparent_mag = apparent_mag
 
     def summary(self):
-        """Return the base summary with the brightness appended."""
-        return super().summary() + f"\n  Brightness: {self.brightness:g}"
-
-
-# In[ ]:
-
+        """Return the base text and add a line for the apparent magnitude."""
+        return super().summary() + f"\n  Apparent magnitude: {self.apparent_mag}"
 
 
 
