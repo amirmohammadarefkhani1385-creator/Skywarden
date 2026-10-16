@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
 
 
 """Observer Log: a simple console program to record astronomy observations."""
@@ -47,7 +43,7 @@ def add_photometric_observation():
     if brightness is None:
         return
 
-    obs = PhotometricObservation(target, observer, filter_name, exposure, brightness)
+    obs = Photometric_Observation(target, observer, filter_name, exposure, brightness)
     observations.append(obs)
     print("Photometric observation added successfully")
 
@@ -67,7 +63,7 @@ def add_spectroscopic_observation():
     if wavelength is None:
         return
 
-    obs = SpectroscopicObservation(target, observer, filter_name, exposure, wavelength)
+    obs = Spectroscopic_Observation(target, observer, filter_name, exposure, wavelength)
     observations.append(obs)
     print("Spectroscopic observation added successfully")
 #------------------------------------------------------------------
@@ -142,7 +138,7 @@ def save_to_csv_file():
                 "observer": obs.observer,
                 "filter": obs.filter_name,
                 "exposure_seconds": obs.exposure_seconds,
-                "magnitude": getattr(obs, "magnitude", ""),
+                "brightness": getattr(obs, "brightness", ""),
                 "wavelength_nm": getattr(obs, "wavelength_nm", ""),
             })
         print("Data saved successfully")
