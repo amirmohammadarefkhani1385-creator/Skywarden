@@ -125,7 +125,7 @@ def save_to_csv_file():
     filename = input("Your file name: ")
     columns = [
         "target", "observer", "filter",
-        "exposure_seconds", "magnitude", "wavelength_nm",
+        "exposure_seconds", "brightness", "wavelength_nm",
     ]
 
     with open(f"{filename}.csv", "w", newline="") as file:
