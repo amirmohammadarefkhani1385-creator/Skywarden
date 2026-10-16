@@ -36,24 +36,29 @@ def add_wavelength_observation():
     target = input("Target: ")
     observer = input("Name of observer: ")
     filter_name = input("Filter name: ")
-    exposure = get_positive_number("Exposure time (second): ")
-    lambda_nm = get_positive_number("Lambda (nm): ")
-
+    exposure = get_number("Exposure time (second): ")
+    if exposure is None:
+        return
+    lambda_nm = get_number("Lambda (nm): ")
+    if lambda_nm is None:
+        return
     observations.append(
         Wavelength_Observation(target, observer, filter_name, exposure, lambda_nm)
     )
     print("Wavelength observation added successfully")
-
-#-----------------------------------------------------------
+#---------------------------------------------------------
 
 def add_brightness_observation():
     """Read the data for a brightness observation and add it to the list."""
     target = input("Target: ")
     observer = input("Name of observer: ")
     filter_name = input("Filter name: ")
-    exposure = get_positive_number("Exposure time (second): ")
-    apparent_mag = get_number("Apparent magnitude: ")
-
+    exposure = get_number("Exposure time (second): ")
+    if exposure is None:
+        return
+    apparent_mag = get_number("Apparent magnitude: ", positive=False)
+    if apparent_mag is None:
+        return
     observations.append(
         Brightness_Observation(target, observer, filter_name, exposure, apparent_mag)
     )
@@ -117,7 +122,7 @@ def save_to_csv_file():
     filename = input("Your file name: ")
     columns = [
         "target", "observer", "filter",
-        "exposure_seconds", "brightness", "wavelength_nm",
+        "exposure_seconds", "apparent_mag", "lambda_nm",
     ]
 
     with open(f"{filename}.csv", "w", newline="") as file:
@@ -130,10 +135,10 @@ def save_to_csv_file():
                 "observer": obs.observer,
                 "filter": obs.filter_name,
                 "exposure_seconds": obs.exposure_seconds,
-                "brightness": getattr(obs, "brightness", ""),
-                "wavelength_nm": getattr(obs, "wavelength_nm", ""),
+                "apparent_mag": getattr(obs, "apparent_mag", ""),
+                "lambda_nm": getattr(obs, "lambda_nm", ""),
             })
-        print("Data saved successfully")
+    print("Data saved successfully")
 
 
 conn = sqlite3.connect("observation.db")
