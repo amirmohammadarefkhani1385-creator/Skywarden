@@ -42,7 +42,7 @@ class Wavelength_Observation(Observation):
         lambda_nm: Wavelength in nanometres.
     """
 
-    def init(self, target, observer, filter_name, exposure_seconds, lambda_nm):
+    def __init__(self, target, observer, filter_name, exposure_seconds, lambda_nm):
         super().__init__(target, observer, filter_name, exposure_seconds)
         self.lambda_nm = lambda_nm
 
@@ -58,7 +58,7 @@ class Brightness_Observation(Observation):
         apparent_mag: Apparent magnitude (smaller means brighter, may be negative).
     """
 
-    def init(self, target, observer, filter_name, exposure_seconds, apparent_mag):
+    def __init__(self, target, observer, filter_name, exposure_seconds, apparent_mag):
         super().__init__(target, observer, filter_name, exposure_seconds)
         self.apparent_mag = apparent_mag
 
